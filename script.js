@@ -18,6 +18,7 @@ const addNewNote = (text = '') => {
 
     const htmlData = `
     <div class="operation">
+        <button class="save"><i class="fa-solid fa-save"></i></button>
         <button class="edit"><i class="fa-solid fa-pen-to-square"></i></button>
         <button class="delete"><i class="fa-solid fa-trash"></i></button>
     </div>
@@ -27,6 +28,7 @@ const addNewNote = (text = '') => {
 
     note.insertAdjacentHTML('afterbegin', htmlData);
 
+    const saveButton = note.querySelector('.save');
     const editButton = note.querySelector('.edit');
     const delButton = note.querySelector('.delete');
     const mainDiv = note.querySelector('.main');
@@ -37,19 +39,32 @@ const addNewNote = (text = '') => {
         updateLSData();
     })
 
+    saveButton.addEventListener('click', () => {
+        const value = textarea.value;
+        mainDiv.innerHTML = value;
+        mainDiv.classList.remove('hidden');
+        textarea.classList.add('hidden');
+        updateLSData();
+    });
+
     textarea.value = text;
     mainDiv.innerHTML = text;
+
+    let isEditing = false; // Flag to track if note is being edited
 
     editButton.addEventListener('click', () => {
         mainDiv.classList.toggle('hidden');
         textarea.classList.toggle('hidden');
+        isEditing = !isEditing; // Toggle the flag
     })
 
     textarea.addEventListener('change', (event) => {
         const value = event.target.value;
         mainDiv.innerHTML = value;
 
-        updateLSData();
+        if (!isEditing) { // Save only if not in edit mode
+            updateLSData();
+        }
     })
 
     document.body.appendChild(note);
