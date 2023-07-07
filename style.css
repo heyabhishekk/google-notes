@@ -73,6 +73,7 @@ body {
     padding: 20px;
 }
 .fa-pen-to-square,
+.fa-save,
 .fa-trash {
     color: #fff;
     padding: 10px;
@@ -81,6 +82,9 @@ body {
 }
 .fa-trash {
     background-color: #e74c3c;
+}
+.fa-save{
+    background-color: #fc7711;
 }
 .fa-pen-to-square:hover {
     background-color: #fff;
@@ -92,8 +96,13 @@ body {
     color: #e74c3c;
     filter: drop-shadow(0px 10px 8px rgb(219, 218, 218));
 }
+.fa-save:hover {
+    background-color: #fff;
+    color: #27ae60;
+    filter: drop-shadow(0px 10px 8px rgb(219, 218, 218));
+}
 .btn {
-    background-color: #0be164;
+    background-color: #ffc107;
 }
 .hidden {
     display: none;
